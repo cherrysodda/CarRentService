@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package rentersService;
+
+
+
+option go_package = "rentersService.v1";
+
+service Renters {
+    rpc CreateRenter (CreateRenterRequest) returns (CreateRenterResponse);
+            rpc ListRenters (ListRentersRequest) returns (ListRentersResponse);
+                    rpc GetRenterById (GetRenterRequest) returns (GetRenterResponse);
+                        rpc RentCar (RentCarRequest) returns (RentCarResponse);
+}
+
+message  CreateRenterRequest {
+    string phone = 1 ;
+    string firstname = 2 ;
+    string  lastname = 3 ;
+    string dln = 4;
+}
+
+message CreateRenterResponse {
+    string status = 1 ;
+}
+
+message ListRentersRequest {
+}
+
+message Renter {
+    int32 id = 1 ;
+    string phone = 2;
+    string firstname = 3 ;
+    string  lastname = 4 ;
+    string dln = 5;
+    bool havecarstatus = 6;
+    string carid = 7;
+}
+
+message ListRentersResponse{
+    repeated Renter renter = 1 ;
+}
+
+message GetRenterRequest {
+    string id = 1;
+}
+
+message GetRenterResponse{
+    Renter renter = 1;
+}
+
+message RentCarRequest {
+    string status = 1;
+}
+
+message RentCarResponse {
+    string status = 1;
+}

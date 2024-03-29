@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package carsService;
+
+option go_package = "carsService.v1";
+
+service Cars {
+    rpc CreateCar (CreateCarRequest) returns (CreateCarResponse);
+            rpc ListCars (ListCarRequest) returns (ListCarRepsonse);
+                    rpc GetCarById (GetCarRequest) returns (GetCarResponse);
+                            rpc RentCar (RentCarRequest) returns (RentCarResponse);
+}
+
+message CreateCarRequest {
+    string model = 1;
+    string color = 2;
+    string regnumber = 3;
+}
+
+message CreateCarResponse {
+    string status = 1;
+}
+
+message ListCarRequest{}
+
+message Car {
+    int32 id = 1;
+    string model = 2;
+    string color = 3;
+    string regnumber = 4;
+    bool   itsrentedstatus = 5;
+    string renterid = 6;
+}
+
+message ListCarRepsonse{
+        repeated Car cars = 1;
+}
+
+message GetCarRequest {
+    string id = 1;
+}
+
+message GetCarResponse {
+   Car car = 1;
+}
+
+message RentCarRequest {
+    string id = 1;
+}
+
+message  RentCarResponse {
+    string status = 1;
+}
